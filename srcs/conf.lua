@@ -3,6 +3,6 @@
 -- for the tiles: gb orig 8x8 so now 32x32
 function love.conf(t)
 	t.window.width = 640 -- gb orig 160
-	t.window.height = 576 -- gb orig 144
+	t.window.height = 288 -- gb orig 144
 	t.window.title = "Escape the Mansion"
 end
