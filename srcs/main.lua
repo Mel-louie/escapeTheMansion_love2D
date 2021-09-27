@@ -1,5 +1,6 @@
 require "images"
 require "player"
+require "simpleScale"
 
 --------------------------------------------------------------------------------------------------------------------------------
 -- LOVE functions basics
@@ -12,6 +13,9 @@ function	love.load()
 	-- os.time(): given a formatted date table, as used by os.date() return the time in system seconds.
 	math.randomseed(os.time())
 	love.graphics.setBackgroundColor(1,1,1)
+
+	reScaling()
+
 	initPlayer()
 	initSprites()
 end
@@ -20,24 +24,26 @@ end
 -- dt = delta time, time between 2 frames, multiplies by this param to have all the moves at the same time, the frame time
 function	love.update(dt)
 
-	ret = inputs_user(dt)
+	simpleScale.resizeUpdate()
 
+	ret = inputs_user(dt)
 	-- player animation
 	if  ret == 1 then
 		playerAnimation(dt)
 	end
-
 end
 
 -- draw on the screen
 function	love.draw()
+	simpleScale.set()
 	love.graphics.draw(spriteSheetPlayer, spritePlayer, playerPosX, playerPosY, playerRad, 1, 1, playerWeight/2, playerHigh/2)
+	simpleScale.unSet()
 end
 
 --------------------------------------------------------------------------------------------------------------------------------
+-- custom functions
 --------------------------------------------------------------------------------------------------------------------------------
 
--- custom functions
 function	inputs_user(dt)
 	if love.keyboard.isDown("escape") then -- every key name is in the doc
 		love.event.quit(42) -- exit and send the return value 42
