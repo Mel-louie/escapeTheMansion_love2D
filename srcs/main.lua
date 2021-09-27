@@ -1,6 +1,17 @@
 require "images"
 require "player"
+require "initGame"
 require "simpleScale"
+require "maps/kitchen"
+require "maps/tiles"
+
+tile = {}
+tile.sizeX = 32
+tile.sizeY = 32
+
+screenConf = {}
+screenConf.sizeX = 20
+screenConf.sizeY = 15
 
 --------------------------------------------------------------------------------------------------------------------------------
 -- LOVE functions basics
@@ -12,6 +23,10 @@ function	love.load()
 	-- A good 'seed' is os.time(), but wait a second before calling the function to obtain another sequence!
 	-- os.time(): given a formatted date table, as used by os.date() return the time in system seconds.
 	math.randomseed(os.time())
+
+	-- makes the images "clean" and not blurry when rescale the window
+	love.graphics.setDefaultFilter("nearest","nearest")
+	
 	love.graphics.setBackgroundColor(1,1,1)
 
 	reScaling()
@@ -31,11 +46,13 @@ function	love.update(dt)
 	if  ret == 1 then
 		playerAnimation(dt)
 	end
+
 end
 
 -- draw on the screen
 function	love.draw()
 	simpleScale.set()
+	kitchenDraw()
 	love.graphics.draw(spriteSheetPlayer, spritePlayer, playerPosX, playerPosY, playerRad, 1, 1, playerWeight/2, playerHigh/2)
 	simpleScale.unSet()
 end
@@ -53,11 +70,11 @@ function	inputs_user(dt)
 	end
 	if love.keyboard.isDown("right") then
 		playerPosX = playerPosX + playerSpeed * dt
-		yOffset = 32 * 2
+		yOffset = tile.sizeY * 2
 		return 1
 	elseif love.keyboard.isDown("left") then
 		playerPosX = playerPosX - playerSpeed * dt
-		yOffset = 32 * 3
+		yOffset = tile.sizeY * 3
 		return 1
 	elseif love.keyboard.isDown("up") then
 		playerPosY = playerPosY - playerSpeed * dt
@@ -65,7 +82,7 @@ function	inputs_user(dt)
 		return 1
 	elseif love.keyboard.isDown("down") then
 		playerPosY = playerPosY + playerSpeed * dt
-		yOffset = 32
+		yOffset = tile.sizeY
 		return 1
 	end
 	return 0

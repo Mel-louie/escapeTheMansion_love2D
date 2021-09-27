@@ -3,8 +3,8 @@ function initPlayer()
 	playerPosX = 200
 	playerPosY = 200
 	playerRad = math.rad(0)
-	playerWeight = 32
-	playerHigh = 32
+	playerWeight = tile.sizeX
+	playerHigh = tile.sizeY
 	playerSpeed = 150
 	playerAnimtime = 0.1
 	playerFrame = 0
@@ -19,8 +19,8 @@ function playerAnimation(dt)
 		if playerFrame > playerMaxFrame then
 			playerFrame = 0
 		end
-		xOffset = playerFrame * 32
+		xOffset = playerFrame * tile.sizeX
 	-- setViewport: met à jour le quad avec la nouvelle valeur de yOffset
-		spritePlayer:setViewport(xOffset, yOffset, 32, 32)
+		spritePlayer:setViewport(xOffset, yOffset, tile.sizeX, tile.sizeY)
 	end
 end

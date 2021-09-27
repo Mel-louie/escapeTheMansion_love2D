@@ -132,8 +132,7 @@ end
 --------------------------------------------------------------------------------------------------------------------------------
 
 function reScaling()
-	-- makes the images "clean" and not blurry when rescale the window
-	love.graphics.setDefaultFilter("nearest","nearest")
+
 	width = 640
 	height = 480
 	windowWidth = 640
