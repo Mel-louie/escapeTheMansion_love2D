@@ -68,21 +68,33 @@ function	inputs_user(dt)
 		-- love.event.quit("restart") -- exit and restart
 		return 0
 	end
-	if love.keyboard.isDown("right") then
-		playerPosX = playerPosX + playerSpeed * dt
-		yOffset = tile.sizeY * 2
+	if love.keyboard.isDown("right")  then
+		canMove = kitchenUpdate(dt, (playerPosX + playerSpeed * dt), playerPosY) 
+		if canMove == 1 then
+			playerPosX = playerPosX + playerSpeed * dt
+			yOffset = tile.sizeY * 2
+		end
 		return 1
 	elseif love.keyboard.isDown("left") then
-		playerPosX = playerPosX - playerSpeed * dt
-		yOffset = tile.sizeY * 3
+		canMove = kitchenUpdate(dt, (playerPosX - playerSpeed * dt), playerPosY) 
+		if canMove == 1 then
+			playerPosX = playerPosX - playerSpeed * dt
+			yOffset = tile.sizeY * 3
+		end
 		return 1
 	elseif love.keyboard.isDown("up") then
-		playerPosY = playerPosY - playerSpeed * dt
-		yOffset = 0
+		canMove = kitchenUpdate(dt, playerPosX, (playerPosY - playerSpeed * dt))
+		if canMove == 1 then
+			playerPosY = playerPosY - playerSpeed * dt
+			yOffset = 0
+		end
 		return 1
 	elseif love.keyboard.isDown("down") then
-		playerPosY = playerPosY + playerSpeed * dt
-		yOffset = tile.sizeY
+		canMove = kitchenUpdate(dt, playerPosX, (playerPosY + playerSpeed * dt))
+		if canMove == 1 then
+			playerPosY = playerPosY + playerSpeed * dt
+			yOffset = tile.sizeY
+		end
 		return 1
 	end
 	return 0

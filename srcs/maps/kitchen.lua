@@ -38,6 +38,14 @@ kitchen.grid = {
 	
 }
 
+function kitchenUpdate(dt, playerPosX, playerPosY)
+	if check_collision(playerPosX - (tile.sizeX / 2), playerPosY - (tile.sizeY / 2), tile.sizeX, tile.sizeY, 3*tile.sizeX, 8.5*tile.sizeY, 4*tile.sizeX, 3.5*tile.sizeY) then
+		return 1
+	else
+		return 0
+	end
+end
+
 function kitchenDraw()
 	i = 1
 	for y = 1, screenConf.sizeY, 1 do
@@ -48,6 +56,7 @@ function kitchenDraw()
 			i = i + 1
 		end
 	end
+	love.graphics.rectangle("line", 3*tile.sizeX, 8.5*tile.sizeY, 4*tile.sizeX, 3.5*tile.sizeY)
 end
 
 return kitchen

@@ -1,7 +1,7 @@
 
 function initPlayer()
 	playerPosX = 200
-	playerPosY = 200
+	playerPosY = 300
 	playerRad = math.rad(0)
 	playerWeight = tile.sizeX
 	playerHigh = tile.sizeY
