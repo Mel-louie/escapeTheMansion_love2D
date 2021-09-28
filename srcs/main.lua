@@ -1,9 +1,8 @@
-require "images"
 require "player"
 require "initGame"
 require "simpleScale"
 require "maps/kitchen"
-require "maps/tiles"
+require "maps/kitchenTiles"
 
 tile = {}
 tile.sizeX = 32
@@ -32,7 +31,7 @@ function	love.load()
 	reScaling()
 
 	initPlayer()
-	initSprites()
+	initPlayerSprites()
 end
 
 -- update the frames, loop 60x / sec, where the things exce on permanant basis are
@@ -68,6 +67,7 @@ function	inputs_user(dt)
 		-- love.event.quit("restart") -- exit and restart
 		return 0
 	end
+
 	if love.keyboard.isDown("right")  then
 		canMove = kitchenUpdate(dt, (playerPosX + playerSpeed * dt), playerPosY) 
 		if canMove == 1 then
@@ -97,5 +97,6 @@ function	inputs_user(dt)
 		end
 		return 1
 	end
+
 	return 0
 end
