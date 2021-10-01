@@ -1,16 +1,9 @@
 require "player"
+require "fire"
 require "initGame"
 require "simpleScale"
 require "maps/kitchen"
 require "maps/kitchenTiles"
-
-tile = {}
-tile.sizeX = 32
-tile.sizeY = 32
-
-screenConf = {}
-screenConf.sizeX = 20
-screenConf.sizeY = 15
 
 --------------------------------------------------------------------------------------------------------------------------------
 -- LOVE functions basics
@@ -24,14 +17,17 @@ function	love.load()
 	math.randomseed(os.time())
 
 	-- makes the images "clean" and not blurry when rescale the window
-	love.graphics.setDefaultFilter("nearest","nearest")
 	
 	love.graphics.setBackgroundColor(1,1,1)
-
+	
 	reScaling()
-
+	love.graphics.setDefaultFilter("nearest","nearest")
+	
 	initPlayer()
 	initPlayerSprites()
+	
+	initFire()
+	initFireSprites()
 end
 
 -- update the frames, loop 60x / sec, where the things exce on permanant basis are
@@ -39,6 +35,8 @@ end
 function	love.update(dt)
 
 	simpleScale.resizeUpdate()
+	
+	fireAnimation(dt)
 
 	ret = inputs_user(dt)
 	-- player animation
@@ -52,7 +50,11 @@ end
 function	love.draw()
 	simpleScale.set()
 	kitchenDraw()
+	
 	love.graphics.draw(spriteSheetPlayer, spritePlayer, playerPosX, playerPosY, playerRad, 1, 1, playerWeight/2, playerHigh/2)
+	
+	love.graphics.draw(spriteSheetFire, spriteFire, firePosX, firePosY, fireRad, 1, 1, fireWeight/2, fireHigh/2)
+	
 	simpleScale.unSet()
 end
 

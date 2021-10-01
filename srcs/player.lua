@@ -10,7 +10,7 @@ function initPlayerSprites()
 end
 
 function initPlayer()
-	playerPosX = 200
+	playerPosX = 400
 	playerPosY = 300
 	playerRad = math.rad(0)
 	playerWeight = tile.sizeX

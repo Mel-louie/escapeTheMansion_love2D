@@ -4,3 +4,11 @@ function check_collision(x1, y1, w1, h1, x2, y2, w2, h2)
 			y1 < y2 + h2 and
 			y1 + h1 > y2
 end
+
+tile = {}
+tile.sizeX = 32
+tile.sizeY = 32
+
+screenConf = {}
+screenConf.sizeX = 20
+screenConf.sizeY = 15

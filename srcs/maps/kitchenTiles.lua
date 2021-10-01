@@ -1,3 +1,4 @@
+love.graphics.setDefaultFilter("nearest", "nearest")
 tile0 = love.graphics.newImage("/visuels/kitchen/blank.png")
 tile1 = love.graphics.newImage("/visuels/kitchen/floor.png")
 tile2 = love.graphics.newImage("/visuels/kitchen/downwall.png")
@@ -20,8 +21,28 @@ tile18 = love.graphics.newImage("/visuels/kitchen/18.png")
 tile19 = love.graphics.newImage("/visuels/kitchen/19.png")
 tile20 = love.graphics.newImage("/visuels/kitchen/20.png")
 tile21 = love.graphics.newImage("/visuels/kitchen/21.png")
+tile22 = love.graphics.newImage("/visuels/kitchen/bin.png")
+tile23 = love.graphics.newImage("/visuels/kitchen/table1.png")
+tile24 = love.graphics.newImage("/visuels/kitchen/table2.png")
+tile25 = love.graphics.newImage("/visuels/kitchen/table3.png")
+tile26 = love.graphics.newImage("/visuels/kitchen/fireplace1.png")
+tile27 = love.graphics.newImage("/visuels/kitchen/fireplace2.png")
+tile28 = love.graphics.newImage("/visuels/kitchen/fireplace3.png")
+tile29 = love.graphics.newImage("/visuels/kitchen/buche2.png")
+tile30 = love.graphics.newImage("/visuels/kitchen/buche1.png")
+tile31 = love.graphics.newImage("/visuels/kitchen/fridge1.png")
+tile32 = love.graphics.newImage("/visuels/kitchen/fridge2.png")
+tile33 = love.graphics.newImage("/visuels/kitchen/fridge3.png")
+tile34 = love.graphics.newImage("/visuels/kitchen/cuisine1.png")
+tile35 = love.graphics.newImage("/visuels/kitchen/cuisine2.png")
+tile36 = love.graphics.newImage("/visuels/kitchen/cuisine3.png")
+tile37 = love.graphics.newImage("/visuels/kitchen/cuisine4.png")
+tile38 = love.graphics.newImage("/visuels/kitchen/cuisine5.png")
+tile39 = love.graphics.newImage("/visuels/kitchen/cuisine6.png")
+tile40 = love.graphics.newImage("/visuels/kitchen/22.png")
 
 function kitchenGetsTileById(id)
+	
 	if id == 1 then
 		return tile1
 	elseif id == 2 then
@@ -64,6 +85,44 @@ function kitchenGetsTileById(id)
 		return tile20
 	elseif id == 21 then
 		return tile21
+	elseif id == 22 then
+		return tile22
+	elseif id == 23 then
+		return tile23
+	elseif id == 24 then
+		return tile24
+	elseif id == 25 then
+		return tile25
+	elseif id == 26 then
+		return tile26
+	elseif id == 27 then
+		return tile27
+	elseif id == 28 then
+		return tile28
+	elseif id == 29 then
+		return tile29
+	elseif id == 30 then
+		return tile30
+	elseif id == 31 then
+		return tile31
+	elseif id == 32 then
+		return tile32
+	elseif id == 33 then
+		return tile33
+	elseif id == 34 then
+		return tile34
+	elseif id == 35 then
+		return tile35
+	elseif id == 36 then
+		return tile36
+	elseif id == 37 then
+		return tile37
+	elseif id == 38 then
+		return tile38
+	elseif id == 39 then
+		return tile39
+	elseif id == 40 then
+		return tile40
 	else
 		return tile0
 	end
