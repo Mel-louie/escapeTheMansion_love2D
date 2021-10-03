@@ -54,7 +54,10 @@ function kitchenUpdate(dt, playerPosX, playerPosY)
 	end
 end
 
-function kitchenDraw()
+function kitchenDraw(shader)
+	love.graphics.setShader(shader)
+	kitchenShader()
+
 	i = 1
 	for y = 1, screenConf.sizeY, 1 do
 		for x = 1, screenConf.sizeX, 1 do
@@ -64,6 +67,8 @@ function kitchenDraw()
 			i = i + 1
 		end
 	end
+	love.graphics.setShader()
+	
 	-- -- floor
 	-- love.graphics.rectangle("line", 11*tile.sizeX, 8.5*tile.sizeY, 6*tile.sizeX, 3.5*tile.sizeY)
 	-- -- bin
