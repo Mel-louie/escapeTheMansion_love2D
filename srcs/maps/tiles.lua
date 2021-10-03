@@ -1,5 +1,6 @@
 love.graphics.setDefaultFilter("nearest", "nearest")
 tile0 = love.graphics.newImage("/visuels/kitchen/blank.png")
+
 tile1 = love.graphics.newImage("/visuels/kitchen/floor.png")
 tile2 = love.graphics.newImage("/visuels/kitchen/downwall.png")
 tile3 = love.graphics.newImage("/visuels/kitchen/upwall.png")
@@ -43,23 +44,23 @@ tile40 = love.graphics.newImage("/visuels/kitchen/22.png")
 
 function kitchenGetsTileById(id)
 	
-	if id == 1 then
+	if id == 01 then
 		return tile1
-	elseif id == 2 then
+	elseif id == 02 then
 		return tile2
-	elseif id == 3 then
+	elseif id == 03 then
 		return tile3
-	elseif id == 4 then
+	elseif id == 04 then
 		return tile4
-	elseif id == 5 then
+	elseif id == 05 then
 		return tile5
-	elseif id == 6 then
+	elseif id == 06 then
 		return tile6
-	elseif id == 7 then
+	elseif id == 07 then
 		return tile7
-	elseif id == 8 then
+	elseif id == 08 then
 		return tile8
-	elseif id == 9 then
+	elseif id == 09 then
 		return tile9
 	elseif id == 10 then
 		return tile10

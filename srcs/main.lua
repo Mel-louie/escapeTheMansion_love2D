@@ -4,9 +4,10 @@ require "fire"
 require "initGame"
 require "simpleScale"
 require "maps/kitchen"
-require "maps/kitchenTiles"
+require "maps/tiles"
 
 shader = nil
+message = 0
 --------------------------------------------------------------------------------------------------------------------------------
 -- LOVE functions basics
 --------------------------------------------------------------------------------------------------------------------------------
@@ -20,11 +21,13 @@ function	love.load()
 
 	shader = love.graphics.newShader(shader_code)
 	
-	love.graphics.setBackgroundColor(1,1,1)
-	
+	-- love.graphics.setBackgroundColor(1,1,1)
+	love.graphics.setNewFont(11)
 	reScaling()
 	love.graphics.setDefaultFilter("nearest","nearest")
 	
+	text = nil
+	love.keyboard.setKeyRepeat(false)
 	initPlayer()
 	initPlayerSprites()
 	
@@ -35,37 +38,45 @@ end
 -- update the frames, loop 60x / sec, where the things exce on permanant basis are
 -- dt = delta time, time between 2 frames, multiplies by this param to have all the moves at the same time, the frame time
 function	love.update(dt)
-
+	
 	simpleScale.resizeUpdate()
 	
 	fireAnimation(dt)
-
-	ret = inputs_user(dt)
-	-- player animation
-	if  ret == 1 then
-		playerAnimation(dt)
+	if scene ~= "Menu" then
+		ret = inputsGame(dt)
+		-- player animation
+		if  ret == 1 then
+			playerAnimation(dt)
+		end
 	end
-
+	
 end
 
 -- draw on the screen
 function	love.draw()
 	simpleScale.set()
-
-
-	kitchenDraw(shader)
+	
+	if scene == "kitchen" then
+		kitchenDraw(shader)
+		kitchenTexts()
+	end
 
 	love.graphics.draw(spriteSheetPlayer, spritePlayer, playerPosX, playerPosY, playerRad, 1, 1, playerWeight/2, playerHigh/2)
 	love.graphics.draw(spriteSheetFire, spriteFire, firePosX, firePosY, fireRad, 1, 1, fireWeight/2, fireHigh/2)
-	
 	simpleScale.unSet()
 end
+
+-- function love.keypressed( key )
+-- end
+
+--  function love.keyreleased( key )
+--  end
 
 --------------------------------------------------------------------------------------------------------------------------------
 -- custom functions
 --------------------------------------------------------------------------------------------------------------------------------
 
-function	inputs_user(dt)
+function	inputsGame(dt)
 	if love.keyboard.isDown("escape") then -- every key name is in the doc
 		love.event.quit(42) -- exit and send the return value 42
 		-- love.event.quit() -- exit without specific return value
@@ -77,30 +88,30 @@ function	inputs_user(dt)
 	
 	if love.keyboard.isDown("right")  then
 		canMove = kitchenUpdate(dt, (playerPosX + playerSpeed * dt), playerPosY) 
+		yOffset = tile.sizeY * 2
 		if canMove == 1 then
 			playerPosX = playerPosX + playerSpeed * dt
-			yOffset = tile.sizeY * 2
 		end
 		return 1
 	elseif love.keyboard.isDown("left") then
 		canMove = kitchenUpdate(dt, (playerPosX - playerSpeed * dt), playerPosY) 
+		yOffset = tile.sizeY * 3
 		if canMove == 1 then
 			playerPosX = playerPosX - playerSpeed * dt
-			yOffset = tile.sizeY * 3
 		end
 		return 1
 	elseif love.keyboard.isDown("up") then
 		canMove = kitchenUpdate(dt, playerPosX, (playerPosY - playerSpeed * dt))
+		yOffset = 0
 		if canMove == 1 then
 			playerPosY = playerPosY - playerSpeed * dt
-			yOffset = 0
 		end
 		return 1
 	elseif love.keyboard.isDown("down") then
 		canMove = kitchenUpdate(dt, playerPosX, (playerPosY + playerSpeed * dt))
+		yOffset = tile.sizeY
 		if canMove == 1 then
 			playerPosY = playerPosY + playerSpeed * dt
-			yOffset = tile.sizeY
 		end
 		return 1
 	end

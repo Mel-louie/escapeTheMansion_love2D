@@ -57,7 +57,7 @@ function kitchenShader()
 	-- shader position on the screen
 	shader:send("lights[0].position", {
 		369,
-		255
+		286
 	})
 	-- color of the light
 	shader:send("lights[0].diffuse", {

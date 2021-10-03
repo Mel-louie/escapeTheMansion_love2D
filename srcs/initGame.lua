@@ -12,3 +12,5 @@ tile.sizeY = 32
 screenConf = {}
 screenConf.sizeX = 20
 screenConf.sizeY = 15
+
+scene = "kitchen"

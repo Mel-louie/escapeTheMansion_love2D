@@ -1,7 +1,7 @@
 
 function initFire()
 	firePosX = 369
-	firePosY = 255
+	firePosY = 286
 	fireRad = math.rad(0)
 	fireWeight = 16
 	fireHigh = 14
